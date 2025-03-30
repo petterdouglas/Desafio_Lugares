@@ -8,7 +8,9 @@
   --color-gray-200: #868686;
   --color-white: #ffffff;
   --color-green: #4f9419;
+  --color-dark-green: #006C18;
   --color-black: #000000;
+  --color-danger: #dc2626;
 }
 
 @layer utilities {
