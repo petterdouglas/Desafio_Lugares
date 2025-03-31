@@ -46,7 +46,6 @@ export function SearchBar() {
       local: data.local,
       date: data.date,
     };
-    console.log(searchedCountry);
     addChosenCountry(searchedCountry);
   };
 

@@ -4,7 +4,7 @@ import { SearchBar } from "../components/SearchBar";
 import { useDataCountries } from "../context/DataContext";
 
 export function MainPage() {
-  const { chosenCountries } = useDataCountries();
+  const { chosenCountries, loading, error } = useDataCountries();
 
   return (
     <>
@@ -21,6 +21,16 @@ export function MainPage() {
             date={country.date}
           />
         ))}
+        {loading && (
+          <p className="text-xl self-center text-black font-roboto font-bold">
+            Carregando...
+          </p>
+        )}
+        {error && (
+          <p className="text-xl self-center text-black font-roboto font-bold">
+            Erro ao carregar
+          </p>
+        )}
       </main>
     </>
   );

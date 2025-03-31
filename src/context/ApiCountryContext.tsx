@@ -44,7 +44,6 @@ export function ApiCountryContextProvider({
             },
           }))
           .sort((a: Country, b: Country) => a.translations.pt.localeCompare(b.translations.pt));
-        console.log(sortedCountries);
         setCountries(sortedCountries);
       } catch (err) {
         setError("Failed to fetch countries");
