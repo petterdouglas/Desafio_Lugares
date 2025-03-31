@@ -1,13 +1,19 @@
-import { ContextProvider } from "./context/Context";
+import { ApiCountryContextProvider } from "./context/ApiCountryContext";
+import { DataContextProvider } from "./context/DataContext";
+import { MenuContextProvider } from "./context/MenuContext";
 import "./globals.css";
 import { MainPage } from "./pages/MainPage";
 
 function App() {
   return (
     <>
-      <ContextProvider>
-        <MainPage />
-      </ContextProvider>
+      <DataContextProvider>
+        <MenuContextProvider>
+          <ApiCountryContextProvider>
+            <MainPage />
+          </ApiCountryContextProvider>
+        </MenuContextProvider>
+      </DataContextProvider>
     </>
   );
 }

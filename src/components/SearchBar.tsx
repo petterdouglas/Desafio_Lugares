@@ -2,18 +2,19 @@ import { IMask, IMaskInput } from "react-imask";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
-import {
-  useChosenCountries,
-  useCountries,
-  useMenuBar,
-} from "../context/Context";
+import { useCountries } from "../context/ApiCountryContext";
 import { useEffect } from "react";
+import { useMenuBar } from "../context/MenuContext";
+import { useDataCountries } from "../context/DataContext";
 
 const searchSchema = z.object({
   country: z.string().min(1, "Selecione um país válido"), // retirar os optionals e criar mensagens de erro
-  local: z.string().min(1, "Local válido requerido"),
+  local: z
+    .string()
+    .min(1, "Local válido requerido")
+    .max(20, "Máximo de 20 letras excedido"),
   date: z.string().regex(/^(0[1-9]|1[0-2])\/\d{4}$/, {
-    message: "Formato inválido (use MM/YYYY)",
+    message: "Data incompleta",
   }),
 });
 
@@ -32,10 +33,12 @@ export function SearchBar() {
 
   const { countries, loading, error } = useCountries();
   const { isActived } = useMenuBar();
-  const { addChosenCountry } = useChosenCountries();
+  const { addChosenCountry } = useDataCountries();
 
   const Search: SubmitHandler<searchSchema> = (data) => {
-    const countryInfo = countries.find((c) => c.name === data.country);
+    const countryInfo = countries.find(
+      (c) => c.translations.pt === data.country
+    );
 
     const searchedCountry = {
       countryName: data.country,
@@ -65,7 +68,7 @@ export function SearchBar() {
         isActived
           ? "opacity-100 pointer-events-auto"
           : "opacity-0 pointer-events-none"
-      } transition-all duration-300 absolute flex top-0 right-0 h-fit w-[80%] px-5 bg-green py-14 flex-col items-center gap-6 md:relative md:flex md:p-12 md:w-full md:flex-row md:opacity-100 md:pointer-events-auto`}
+      } transition-all duration-300 absolute flex top-0 right-0 h-fit w-[80%] px-5 bg-green py-14 flex-col items-center gap-6 z-20 md:relative md:flex md:p-12 md:w-full md:flex-row md:opacity-100 md:pointer-events-auto`}
     >
       <form
         id="form"
@@ -93,18 +96,23 @@ export function SearchBar() {
               </option>
               {!error &&
                 countries.map((option, index) => (
-                  <option key={index} value={option.name}>
-                    {option.name}
+                  <option key={index} value={option.translations.pt}>
+                    {option.translations.pt}
                   </option>
                 ))}
             </select>
           </div>
+          {errors?.country && (
+            <p className="mt-2 text-sm text-danger">
+              {errors?.country.message}
+            </p>
+          )}
         </div>
         <div className="font-roboto font-medium md:w-[35%]">
           <h2 className="text-sm text-white">Local</h2>
           <div
             className={`w-full h-8 text-sm bg-white rounded-sm px-2 ${
-              errors.local && "outline-2 outline-danger border-none"
+              errors?.local && "outline-2 outline-danger border-none"
             } `}
           >
             <input
@@ -115,12 +123,15 @@ export function SearchBar() {
               {...register("local")}
             />
           </div>
+          {errors?.local && (
+            <p className="mt-2 text-sm text-danger">{errors?.local.message}</p>
+          )}
         </div>
         <div className="font-roboto w-full md:w-[30%]">
           <h2 className="text-sm text-white">Meta</h2>
           <div
             className={`w-[30%] flex flex-row items-center justify-center h-8 text-sm bg-white rounded-sm px-2 md:w-[80%] ${
-              errors.date && "outline-2 outline-danger border-none"
+              errors?.date && "outline-2 outline-danger border-none"
             }`}
           >
             <Controller
@@ -158,15 +169,26 @@ export function SearchBar() {
               )}
             />
           </div>
+          {errors?.date && (
+            <p className="mt-2 text-sm text-danger">
+              {errors?.date.message === "Required"
+                ? "Data válida requerida"
+                : errors?.date.message}
+            </p>
+          )}
         </div>
+        <button
+          type="submit"
+          form="form"
+          className={`font-roboto text-white text-sm bg-dark-green w-fit py-2 px-10 rounded-sm cursor-pointer self-center ${
+            !errors?.date && !errors?.country && !errors?.local
+              ? "md:self-end"
+              : ""
+          }`}
+        >
+          Adicionar
+        </button>
       </form>
-      <button
-        type="submit"
-        form="form"
-        className="font-roboto text-white text-sm bg-dark-green w-fit py-2 px-10 rounded-sm cursor-pointer self-center md:self-end"
-      >
-        Adicionar
-      </button>
     </section>
   );
 }
