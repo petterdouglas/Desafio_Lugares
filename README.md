@@ -48,6 +48,17 @@ npm run server
 # ou
 yarn server
 ```
+
+## Testes
+
+1. Para rodar os 3 testes básicos de renderização da tela principal:
+
+```bash
+npm run test
+# ou
+yarn test
+```
+
 ## Observações
 
 Certifique-se que as portas **3000** e **3001** estão disponíveis
@@ -58,7 +69,7 @@ Para alterar as portas, edite os scripts no package.json
 
 **⚛️ React 19 com TypeScript**
 
-**🚀 Vite**
+**🚀 Vite e Vitest**
 
 **💨 TailwindCSS**
 
