@@ -33,6 +33,13 @@ yarn install
 
 > **VITE_API_LOCAL=http://localhost:3001/**
 
+_Caso queira usar uma porta personalizada para o server, basta atualizar a VITE_API_LOCAL:_
+
+#### EX: 
+> **VITE_API_LOCAL=http://localhost:3002/** 
+
+
+
 2. Inicie o servidor de desenvolvimento ou acesse o deploy:
 
 **https://desafio-lugares.vercel.app**
@@ -45,13 +52,15 @@ npm run dev
 yarn dev
 ```
 
+
 3. Em outro terminal, inicie o JSON Server:
 
 ```bash
-npm run start
+npm run server
 # ou
-yarn start
+yarn server
 ```
+
 
 ## Testes
 
@@ -63,11 +72,11 @@ npm run test
 yarn test
 ```
 
+
 ## Observações
 
-Certifique-se que as portas **3000** e **3001** estão disponíveis
+Caso escolha acessar o projeto em deploy, não se esqueça de deixar a porta **3001** aberta.
 
-Para alterar as portas, edite os scripts no package.json
 
 ## Tecnologias Utilizadas
 

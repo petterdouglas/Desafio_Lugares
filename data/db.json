@@ -1,5 +1,53 @@
 {
   "countries": [
-    
+    {
+      "countryName": "Brasil",
+      "flag": "https://flagcdn.com/br.svg",
+      "local": "Balneario Camboriu",
+      "date": "04/2022",
+      "id": 1
+    },
+    {
+      "countryName": "Bolívia",
+      "flag": "https://flagcdn.com/bo.svg",
+      "local": "Salar de Uyuni",
+      "date": "04/2023",
+      "id": 2
+    },
+    {
+      "countryName": "Brasil",
+      "flag": "https://flagcdn.com/br.svg",
+      "local": "Fortaleza",
+      "date": "04/2023",
+      "id": 3
+    },
+    {
+      "countryName": "Estados Unidos",
+      "flag": "https://flagcdn.com/us.svg",
+      "local": "Nova York",
+      "date": "12/2022",
+      "id": 4
+    },
+    {
+      "countryName": "Estados Unidos",
+      "flag": "https://flagcdn.com/us.svg",
+      "local": "Filadélfia",
+      "date": "12/2022",
+      "id": 5
+    },
+    {
+      "countryName": "Emirados árabes Unidos",
+      "flag": "https://flagcdn.com/ae.svg",
+      "local": "Dubai",
+      "date": "01/2024",
+      "id": 6
+    },
+    {
+      "countryName": "França",
+      "flag": "https://flagcdn.com/fr.svg",
+      "local": "Paris",
+      "date": "04/2023",
+      "id": 7
+    }
   ]
 }
