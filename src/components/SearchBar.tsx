@@ -2,6 +2,7 @@ import { IMask, IMaskInput } from "react-imask";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
+import select from "../assets/select.png";
 import { useCountries } from "../context/ApiCountryContext";
 import { useEffect } from "react";
 import { useMenuBar } from "../context/MenuContext";
@@ -77,12 +78,12 @@ export function SearchBar() {
         <div className="font-roboto md:w-[35%]">
           <h2 className="text-sm text-white">País</h2>
           <div
-            className={`w-full h-8 text-sm bg-white rounded-sm px-2 ${
+            className={`relative w-full h-8 text-sm bg-white rounded-sm px-2 ${
               errors.country && "border-none outline-2 outline-danger"
             }`}
           >
             <select
-              className="w-full h-full outline-0 text-gray-200"
+              className="w-full h-full outline-0 text-gray-200 appearance-none"
               defaultValue=""
               {...register("country")}
             >
@@ -100,6 +101,7 @@ export function SearchBar() {
                   </option>
                 ))}
             </select>
+            <img src={select} alt="." className="absolute right-2 top-[40%]" />
           </div>
           {errors?.country && (
             <p className="mt-2 text-sm text-danger">

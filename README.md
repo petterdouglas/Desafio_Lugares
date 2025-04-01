@@ -33,7 +33,11 @@ yarn install
 
 > **VITE_API_LOCAL=http://localhost:3001/**
 
-2. Inicie o servidor de desenvolvimento:
+2. Inicie o servidor de desenvolvimento ou acesse o deploy:
+
+**https://desafio-lugares.vercel.app**
+
+ou
 
 ```bash
 npm run dev
