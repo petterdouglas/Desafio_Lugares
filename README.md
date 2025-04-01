@@ -44,9 +44,9 @@ yarn dev
 3. Em outro terminal, inicie o JSON Server:
 
 ```bash
-npm run server
+npm run start
 # ou
-yarn server
+yarn start
 ```
 
 ## Testes
